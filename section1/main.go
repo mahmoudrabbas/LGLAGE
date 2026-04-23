@@ -5,23 +5,35 @@ import "fmt"
 type LogLevel int
 
 const (
-	logWarn LogLevel = iota + 5
-	logErr
-	logDebug
-	logInfo
-	logFatal
+	Info LogLevel = iota + 0
+	Trace
+	Debug
+	Warn
+	Error
+	Fetal
 )
 
-const (
-	Sunday int = iota + 2
-	Monday
-	Tuesday
-)
+var levels []string = []string{"INFO", "TRACE", "Debug", "Warn", "Error", "Fetal"}
+
+func (l LogLevel) String() string {
+	if l > Fetal && l < Info {
+		return "Unknown"
+	}
+
+	return levels[l]
+}
+
+func printLogLevel(l LogLevel) {
+	fmt.Printf("Log Level: %v and value: %v \n", l, l.String())
+}
 
 func main() {
 
-	fmt.Println(logWarn)
-	fmt.Println(logErr)
-	fmt.Println(logDebug)
+	printLogLevel(Info)
+	printLogLevel(Trace)
+	printLogLevel(Debug)
+	printLogLevel(Warn)
+	printLogLevel(Error)
+	printLogLevel(Fetal)
 
 }
