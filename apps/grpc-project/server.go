@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"grpc-demo/db"
 	pb "grpc-demo/proto"
+	"grpc-demo/repository"
 	"grpc-demo/service"
 	"log"
 	"net"
@@ -27,7 +28,9 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	userService := service.NewUserService(db.DB)
+	repo := repository.NewUserRepository(db.DB)
+
+	userService := service.NewUserService(repo)
 
 	pb.RegisterUserServiceServer(grpcServer, userService)
 
