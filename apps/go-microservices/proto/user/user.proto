@@ -1,0 +1,15 @@
+service UserService {
+    rpc GetUser()
+}
+
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+
+message GetUserRepsonse {
+    string user_id = 1;
+    string name = 2;
+    string email = 3;
+}

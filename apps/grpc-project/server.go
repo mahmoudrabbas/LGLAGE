@@ -28,7 +28,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	repo := repository.NewUserRepository(db.DB)
+	repo := repository.NewMysqlUserRepository(db.DB)
 
 	userService := service.NewUserService(repo)
 
